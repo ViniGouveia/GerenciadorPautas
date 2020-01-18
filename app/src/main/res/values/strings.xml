@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">GerenciadorPautas</string>
+    <string name="profile">Perfil</string>
+    <string name="email">E-mail</string>
+    <string name="name">Nome</string>
+    <string name="help">Ajuda?</string>
+    <string name="password">Senha</string>
+    <string name="back">Voltar</string>
+    <string name="create_account">Cadastrar</string>
+    <string name="title">Título</string>
+    <string name="short_description">Breve descrição</string>
+    <string name="details">Detalhes</string>
+    <string name="author">Autor</string>
+    <string name="login">Login</string>
+    <string name="forgot_my_password">Esqueci minha senha</string>
+    <string name="create_new_account">Cadastre-se</string>
+    <string name="logout">Logout</string>
+    <string name="send_password">Enviar Senha</string>
+    <string name="new_agenda">Nova pauta</string>
+    <string name="open_agendas">Pautas Abertas</string>
+    <string name="closed_agendas">Pautas fechadas</string>
+    <string name="author_name">Autor</string>
+    <string name="finish">Finalizar</string>
+</resources>
