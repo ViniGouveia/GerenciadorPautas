@@ -1,7 +1,6 @@
 package com.vinigouveia.gerenciadorpautas.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,13 +18,12 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     //Instancia do objeto utilizado para mapear os elementos gráficos da Activity
     private CreateAccountViewHolder mCreateAccountViewHolder = new CreateAccountViewHolder();
     private MyDatabase db;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        db = Room.databaseBuilder(this, MyDatabase.class, "database").build();
+        db = MyDatabase.getAppDatabase(this);
 
         //Mapeamento dos elementos gráficos
         this.mCreateAccountViewHolder.textNewName = findViewById(R.id.text_new_user_name);
@@ -46,22 +44,18 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             startActivity(intentBackCreateAccount); // Volta à pagina de login
         }
         if (v.getId() == R.id.button_create_new_account) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    String newEmail = mCreateAccountViewHolder.textNewEmail.getText().toString();
-                    String newName = mCreateAccountViewHolder.textNewName.getText().toString();
-                    String newPassword = mCreateAccountViewHolder.textNewPassword.getText().toString();
-                    if (db.userDao().getUser(newEmail) != null) {
-                        Toast.makeText(getApplicationContext(), "Email existente, tente novamente", Toast.LENGTH_LONG).show();
-                    } else {
-                        UserEntity user = new UserEntity(newEmail, newName, newPassword);
-                        db.userDao().insertUser(user);
-                        Toast.makeText(getApplicationContext(), "Conta criada com sucesso", Toast.LENGTH_LONG).show();
-                        startActivity(intentBackCreateAccount);
-                    }
-                }
-            });
+
+            String newEmail = mCreateAccountViewHolder.textNewEmail.getText().toString();
+            String newName = mCreateAccountViewHolder.textNewName.getText().toString();
+            String newPassword = mCreateAccountViewHolder.textNewPassword.getText().toString();
+            if (db.userDao().getUser(newEmail) == null) {
+                UserEntity user = new UserEntity(newEmail, newName, newPassword);
+                db.userDao().insertUser(user);
+                startActivity(intentBackCreateAccount);
+                Toast.makeText(getApplicationContext(), db.userDao().getUser(user.getUserEmail()).getUserName(), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Email existente, tente novamente", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
