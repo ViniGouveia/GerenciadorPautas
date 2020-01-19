@@ -3,25 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".activities.LoginActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:text="@string/email"
-        android:textSize="20sp" />
+        android:textColor="@color/colorBlack"
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/text_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:hint="@string/email" />
+        android:background="@drawable/fields_background"
+        android:hint="@string/email"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,24 +41,30 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:text="@string/password"
-        android:textSize="20sp" />
+        android:textColor="@color/colorBlack"
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/text_password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
+        android:background="@drawable/fields_background"
         android:hint="@string/password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp" />
 
     <Button
         android:id="@+id/button_login"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="30dp"
+        android:background="@drawable/button_green_background"
         android:text="@string/login"
+        android:textColor="@color/colorTextWhite"
         android:textSize="16sp" />
 
     <LinearLayout
@@ -59,15 +77,20 @@
             android:id="@+id/button_recover_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:layout_weight="1"
-            android:text="@string/forgot_my_password" />
+            android:background="@drawable/button_green_background"
+            android:text="@string/forgot_my_password"
+            android:textColor="@color/colorTextWhite" />
 
         <Button
             android:id="@+id/button_create_account"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/create_new_account" />
+            android:background="@drawable/button_green_background"
+            android:text="@string/create_new_account"
+            android:textColor="@color/colorTextWhite" />
 
     </LinearLayout>
 

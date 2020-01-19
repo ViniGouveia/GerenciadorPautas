@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".activities.AgendaActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -15,10 +16,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorHeader"
             app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:subtitle="Perfil | Ajuda"
+            app:subtitleTextColor="@color/colorBlack"
             app:title="Menu"
-            app:subtitle="Perfil | Ajuda" />
+            app:titleTextColor="@color/colorBlack" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -30,8 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@color/colorPrimary"
-        app:maxImageSize="30dp"
+        app:backgroundTint="@color/colorButtonGreen"
+        app:fabCustomSize="80dp"
+        app:maxImageSize="45dp"
         app:srcCompat="@drawable/ic_note_add_black_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

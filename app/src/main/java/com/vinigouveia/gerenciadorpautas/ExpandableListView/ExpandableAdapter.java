@@ -8,20 +8,17 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.vinigouveia.gerenciadorpautas.data.Agenda;
+import com.vinigouveia.gerenciadorpautas.Room.DBEntities.AgendaEntity;
 import com.vinigouveia.gerenciadorpautas.R;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class ExpandableAdapter extends BaseExpandableListAdapter {
-    private List<Agenda> listGroup;
-    private HashMap<Integer, String> listData;
+    private List<AgendaEntity> listGroup;
     private LayoutInflater inflater;
 
-    public ExpandableAdapter(Context context, List<Agenda> listGroup, HashMap<Integer, String> listData) {
+    public ExpandableAdapter(Context context, List<AgendaEntity> listGroup) {
         this.listGroup = listGroup;
-        this.listData = listData;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -42,17 +39,17 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return listData.get(listGroup.get(groupPosition).getAgendaId());
+        return listGroup.get(groupPosition); //listData.get(listGroup.get(groupPosition).getId());
     }
 
     @Override
     public long getGroupId(int groupPosition) {
-        return listGroup.get(groupPosition).getAgendaId();
+        return listGroup.get(groupPosition).getId();
     }
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return childPosition;
+        return listGroup.get(groupPosition).getId();
     }
 
     @Override
@@ -80,7 +77,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ViewHolderItem viewHolderItem;
-        Agenda agendaAux = (Agenda) getGroup(groupPosition);
+        AgendaEntity agendaAux = (AgendaEntity) getGroup(groupPosition);
 
         convertView = inflater.inflate(R.layout.item_expandable_list_view, null);
         viewHolderItem = new ViewHolderItem();
@@ -90,12 +87,15 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         viewHolderItem.textViewAuthor = convertView.findViewById(R.id.text_view_author);
         viewHolderItem.buttonOpenCloseAgenda = convertView.findViewById(R.id.button_open_close_agenda);
 
-        viewHolderItem.textViewAuthor.setText(agendaAux.getAuthor());
+        viewHolderItem.textViewAuthor.setText(agendaAux.getAuthorName());
         viewHolderItem.textViewDescription.setText(agendaAux.getDescription());
+        viewHolderItem.buttonOpenCloseAgenda.setTag(groupPosition);
 
-        if (agendaAux.isOpened()) {
+        if (agendaAux.getStatus()) {
+            viewHolderItem.buttonOpenCloseAgenda.setBackground(convertView.getResources().getDrawable(R.drawable.button_red_background));
             viewHolderItem.buttonOpenCloseAgenda.setText(String.format("%s", "Finalizar"));
         } else {
+            viewHolderItem.buttonOpenCloseAgenda.setBackground(convertView.getResources().getDrawable(R.drawable.button_green_background));
             viewHolderItem.buttonOpenCloseAgenda.setText(String.format("%s", "Reabrir"));
         }
 
@@ -104,7 +104,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
 
     class ViewHolderGroup {

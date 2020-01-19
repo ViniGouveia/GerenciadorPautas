@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".activities.HelpUserActivity">
 
@@ -10,12 +11,13 @@
         android:id="@+id/text_help_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Aqui vai o texto de ajuda ao usuário"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:text="Aqui vai o texto de ajuda ao usuário" />
 
     <Button
         android:id="@+id/button_back_help_user"
         android:layout_width="wrap_content"
+        android:background="@drawable/button_grey_background"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/back" />

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/button_grey_background"
     android:orientation="vertical">
 
     <TextView
@@ -9,13 +10,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="@string/title" />
+        android:text="@string/title"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/text_view_sdescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="@string/short_description" />
+        android:text="@string/short_description"
+        android:textColor="@color/colorBlack"
+        android:textSize="15sp" />
 
 </LinearLayout>

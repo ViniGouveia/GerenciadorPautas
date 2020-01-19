@@ -8,36 +8,58 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 
-import com.vinigouveia.gerenciadorpautas.data.Agenda;
+import com.vinigouveia.gerenciadorpautas.Room.DBData.MyDatabase;
+import com.vinigouveia.gerenciadorpautas.Room.DBEntities.AgendaEntity;
 import com.vinigouveia.gerenciadorpautas.ExpandableListView.ExpandableAdapter;
 import com.vinigouveia.gerenciadorpautas.R;
+import com.vinigouveia.gerenciadorpautas.SharedPreferences.SecurityPreferences;
+import com.vinigouveia.gerenciadorpautas.Constants.Constants;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class ClosedAgendasActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ClosedAgendasViewHolder mClosedAgendasViewHolder = new ClosedAgendasViewHolder();
-    private List<Agenda> listGroup;
-    private HashMap<Integer, String> listData;
+
+    private MyDatabase db;
+
+    private List<AgendaEntity> listGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_closed_agendas);
 
-        listGroup = new ArrayList<>();
-        listData = new HashMap<>();
+        db = MyDatabase.getAppDatabase(getApplicationContext());
 
-        teste();
+        SecurityPreferences SharedPrefereces = new SecurityPreferences(getApplicationContext());
+        String authorEmail = SharedPrefereces.getStoredString(Constants.USEREMAIL_KEY);
+
+        listGroup = new ArrayList<>();
+
+        List<AgendaEntity> agendas = db.agendaDao().getAllAgendasByStatus(authorEmail, false);
 
         this.mClosedAgendasViewHolder.expandableClosedAgendas = findViewById(R.id.expandable_list_view_closed_agendas);
-        this.mClosedAgendasViewHolder.expandableClosedAgendas.setAdapter(new ExpandableAdapter(this, listGroup, listData));
+        this.mClosedAgendasViewHolder.expandableClosedAgendas.setAdapter(new ExpandableAdapter(this, listGroup));
 
         this.mClosedAgendasViewHolder.buttonBackClosedAgendas = findViewById(R.id.button_back_closed_agendas);
         this.mClosedAgendasViewHolder.buttonBackClosedAgendas.setOnClickListener(this);
+
+        addAgendas(agendas);
+
+        this.mClosedAgendasViewHolder.expandableClosedAgendas.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                for (int i = 0; i < listGroup.size(); i++) {
+                    if (mClosedAgendasViewHolder.expandableClosedAgendas.isGroupExpanded(i) && i != groupPosition) {
+                        mClosedAgendasViewHolder.expandableClosedAgendas.collapseGroup(i);
+                    }
+                }
+            }
+        });
     }
+
 
     @Override
     public void onClick(View v) {
@@ -47,17 +69,25 @@ public class ClosedAgendasActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    private void teste() {
-        Agenda agendaAux = (Agenda) getIntent().getSerializableExtra("agenda");
-        if (agendaAux != null) {
-            listGroup.add(agendaAux);
-            listData.put(agendaAux.getAgendaId(), agendaAux.getAuthorEmail());
+    private void addAgendas(List<AgendaEntity> agendas) {
+        for (int i = 0; i < agendas.size(); i++) {
+            listGroup.add(agendas.get(i));
         }
     }
 
     public void reopenOrCloseAgenda(View view) {
-        Intent intentCloseAgenda = new Intent(getApplicationContext(), AgendaActivity.class);
-        startActivity(intentCloseAgenda);
+        int group = (int) view.getTag();
+        if (listGroup.get(group).getStatus()) {
+            listGroup.get(group).setStatus(false);
+            db.agendaDao().updateStatus(listGroup.get(group));
+            finish();
+            startActivity(getIntent());
+        } else {
+            listGroup.get(group).setStatus(true);
+            db.agendaDao().updateStatus(listGroup.get(group));
+            finish();
+            startActivity(getIntent());
+        }
     }
 
     private static class ClosedAgendasViewHolder {

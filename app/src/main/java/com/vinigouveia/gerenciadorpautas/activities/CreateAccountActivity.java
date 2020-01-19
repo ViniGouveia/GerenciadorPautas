@@ -17,7 +17,9 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
     //Instancia do objeto utilizado para mapear os elementos gráficos da Activity
     private CreateAccountViewHolder mCreateAccountViewHolder = new CreateAccountViewHolder();
+
     private MyDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         final Intent intentBackCreateAccount = new Intent(getApplicationContext(), LoginActivity.class);
         if (v.getId() == R.id.button_back_create_account) {
-            startActivity(intentBackCreateAccount); // Volta à pagina de login
+            startActivity(intentBackCreateAccount); // Volta à tela de login
         }
         if (v.getId() == R.id.button_create_new_account) {
 
@@ -52,9 +54,9 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                 UserEntity user = new UserEntity(newEmail, newName, newPassword);
                 db.userDao().insertUser(user);
                 startActivity(intentBackCreateAccount);
-                Toast.makeText(getApplicationContext(), db.userDao().getUser(user.getUserEmail()).getUserName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Conta criada com sucesso!", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(getApplicationContext(), "Email existente, tente novamente", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Email existente, tente novamente.", Toast.LENGTH_LONG).show();
             }
         }
     }

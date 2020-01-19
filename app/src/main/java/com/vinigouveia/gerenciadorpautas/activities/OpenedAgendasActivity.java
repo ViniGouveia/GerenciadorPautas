@@ -8,40 +8,56 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 
-import com.vinigouveia.gerenciadorpautas.data.Agenda;
+import com.vinigouveia.gerenciadorpautas.Room.DBData.MyDatabase;
+import com.vinigouveia.gerenciadorpautas.Room.DBEntities.AgendaEntity;
+import com.vinigouveia.gerenciadorpautas.SharedPreferences.SecurityPreferences;
 import com.vinigouveia.gerenciadorpautas.ExpandableListView.ExpandableAdapter;
 import com.vinigouveia.gerenciadorpautas.R;
+import com.vinigouveia.gerenciadorpautas.Constants.Constants;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class OpenedAgendasActivity extends AppCompatActivity implements View.OnClickListener {
 
     private OpenedAgendasViewHolder mOpenedAgendasViewHolder = new OpenedAgendasViewHolder();
-    private List<Agenda> listGroup;
-    private HashMap<Integer, String> listData;
+
+    private MyDatabase db;
+
+    private List<AgendaEntity> listGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opened_agendas);
 
+        db = MyDatabase.getAppDatabase(getApplicationContext());
+
+        SecurityPreferences SharedPrefereces = new SecurityPreferences(getApplicationContext());
+        String authorEmail = SharedPrefereces.getStoredString(Constants.USEREMAIL_KEY);
+
         listGroup = new ArrayList<>();
-        listData = new HashMap<>();
 
-        Agenda agendaAux1 = new Agenda(1, "Titulo1", "Subtitulo1", "Ta funcionando", "Vinicius", "vini.gouveia11@gmail.com");
-        Agenda agendaAux2 = new Agenda(2, "Titulo2", "Subtitulo2", "Ta funcionando tbm", "Vinicius", "vini.gouveia11@gmail.com");
+        List<AgendaEntity> agendas = db.agendaDao().getAllAgendasByStatus(authorEmail, true);
 
-        teste(agendaAux1);
-        teste(agendaAux2);
-
-
-        this.mOpenedAgendasViewHolder.expandableOpenAgendas = findViewById(R.id.expandable_list_view_opened_agendas);
-        this.mOpenedAgendasViewHolder.expandableOpenAgendas.setAdapter(new ExpandableAdapter(this, listGroup, listData));
+        this.mOpenedAgendasViewHolder.expandableOpenedAgendas = findViewById(R.id.expandable_list_view_opened_agendas);
+        this.mOpenedAgendasViewHolder.expandableOpenedAgendas.setAdapter(new ExpandableAdapter(this, listGroup));
 
         this.mOpenedAgendasViewHolder.buttonBackOpenedAgendas = findViewById(R.id.button_back_opened_agendas);
         this.mOpenedAgendasViewHolder.buttonBackOpenedAgendas.setOnClickListener(this);
+
+        addAgendas(agendas);
+
+        this.mOpenedAgendasViewHolder.expandableOpenedAgendas.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                for (int i = 0; i < listGroup.size(); i++) {
+                    if (mOpenedAgendasViewHolder.expandableOpenedAgendas.isGroupExpanded(i) && i != groupPosition) {
+                        mOpenedAgendasViewHolder.expandableOpenedAgendas.collapseGroup(i);
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -50,21 +66,32 @@ public class OpenedAgendasActivity extends AppCompatActivity implements View.OnC
             Intent intentBackOpenedAgendas = new Intent(getApplicationContext(), AgendaActivity.class);
             startActivity(intentBackOpenedAgendas);
         }
+
     }
 
     public void reopenOrCloseAgenda(View view) {
-        Intent intentCloseAgenda = new Intent(getApplicationContext(), ClosedAgendasActivity.class);
-        intentCloseAgenda.putExtra("agenda", listGroup.get(0));
-        startActivity(intentCloseAgenda);
+        int group = (int) view.getTag();
+        if (listGroup.get(group).getStatus()) {
+            listGroup.get(group).setStatus(false);
+            db.agendaDao().updateStatus(listGroup.get(group));
+            finish();
+            startActivity(getIntent());
+        } else {
+            listGroup.get(group).setStatus(true);
+            db.agendaDao().updateStatus(listGroup.get(group));
+            finish();
+            startActivity(getIntent());
+        }
     }
 
-    private void teste(Agenda agenda) {
-        listGroup.add(agenda);
-        listData.put(agenda.getAgendaId(), agenda.getAuthorEmail());
+    private void addAgendas(List<AgendaEntity> agendas) {
+        for (int i = 0; i < agendas.size(); i++) {
+            listGroup.add(agendas.get(i));
+        }
     }
 
     private static class OpenedAgendasViewHolder {
         Button buttonBackOpenedAgendas;
-        ExpandableListView expandableOpenAgendas;
+        ExpandableListView expandableOpenedAgendas;
     }
 }

@@ -15,15 +15,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:background="@drawable/button_green_background"
         android:padding="25dp"
-        android:text="@string/open_agendas" />
+        android:text="@string/open_agendas"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/button_closed_agendas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:background="@drawable/button_red_background"
         android:padding="25dp"
-        android:text="@string/closed_agendas" />
+        android:text="@string/closed_agendas"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="18sp" />
 
 </LinearLayout>

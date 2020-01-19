@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
     android:padding="15dp"
     tools:context=".activities.OpenedAgendasActivity">
@@ -11,24 +12,26 @@
         android:id="@+id/text_opened_agendas"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@drawable/button_red_background"
         android:gravity="center"
-        android:text="@string/closed_agendas" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/colorPrimary" />
+        android:text="@string/closed_agendas"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="20sp" />
 
     <ExpandableListView
         android:id="@+id/expandable_list_view_closed_agendas"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:background="@color/colorNoColor" />
 
     <Button
         android:id="@+id/button_back_closed_agendas"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:text="@string/back" />
+        android:background="@drawable/button_grey_background"
+        android:text="@string/back"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp" />
 
 </LinearLayout>

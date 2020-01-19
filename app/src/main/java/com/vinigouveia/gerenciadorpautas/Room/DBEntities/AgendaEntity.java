@@ -4,8 +4,10 @@ package com.vinigouveia.gerenciadorpautas.Room.DBEntities;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "agendas")
-public class AgendaEntity {
+public class AgendaEntity implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private Integer id;
 

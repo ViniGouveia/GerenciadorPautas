@@ -18,6 +18,11 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
 
     //Instancia do objeto utilizado para mapear os elementos gráficos da activity
     private AgendaViewHolder mAgendaViewHolder = new AgendaViewHolder();
+    private Intent intentToProfile;
+    private Intent intentToHelp;
+    private Intent intentToCreateNewAgenda;
+    private Intent intentToOpenedAgendas;
+    private Intent intentToClosedAgendas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,13 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_agenda);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        intentToProfile = new Intent(getApplicationContext(), ProfileAcessActivity.class);
+        intentToHelp = new Intent(getApplicationContext(), HelpUserActivity.class);
+        intentToCreateNewAgenda = new Intent(getApplicationContext(), CreateNewAgendaActivity.class);
+        intentToOpenedAgendas = new Intent(getApplicationContext(), OpenedAgendasActivity.class);
+        intentToClosedAgendas = new Intent(getApplicationContext(), ClosedAgendasActivity.class);
+
 
         //Mapeamento dos elementos gráficos
         this.mAgendaViewHolder.createNewAgenda = findViewById(R.id.button_create_new_agenda);
@@ -48,13 +60,11 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
         int id = item.getItemId();
 
         if (id == R.id.activity_profile) {
-            Intent intentToProfile = new Intent(getApplicationContext(), ProfileAcessActivity.class);
             startActivity(intentToProfile);
             return true;
         }
 
         if (id == R.id.activity_help) {
-            Intent intentToHelp = new Intent(getApplicationContext(), HelpUserActivity.class);
             startActivity(intentToHelp);
             return true;
         }
@@ -64,10 +74,6 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        Intent intentToCreateNewAgenda = new Intent(getApplicationContext(), CreateNewAgendaActivity.class);
-        Intent intentToOpenedAgendas = new Intent(getApplicationContext(), OpenedAgendasActivity.class);
-        Intent intentToClosedAgendas = new Intent(getApplicationContext(), ClosedAgendasActivity.class);
-
         if (v.getId() == R.id.button_create_new_agenda) {
             startActivity(intentToCreateNewAgenda);
         }

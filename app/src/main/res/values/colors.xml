@@ -6,5 +6,11 @@
     <color name="colorGreenDark">#218306</color>
     <color name="colorGreenLight">#0B7C23</color>
     <color name="colorTextWhite">#FFFFFF</color>
+    <color name="colorButtonGrey">#B6B6B6</color>
+    <color name="colorButtonGreen">#F05BB82F</color>
+    <color name="colorHeader">#ADADAD</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorButtonRed">#BE3838</color>
+    <color name="colorNoColor">#00CE2828</color>
 
 </resources>
