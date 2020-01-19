@@ -61,6 +61,7 @@ public class RecoverPasswordActivity extends AppCompatActivity implements View.O
         }
         if (v.getId() == R.id.button_send_password) {
             if (recoverPassword()) {
+                password = db.userDao().getUserPassword(email);
                 sendEmail();
                 startActivity(intentBackRecoverPassword);
                 Toast.makeText(getApplicationContext(), "Email enviado!", Toast.LENGTH_SHORT).show();
@@ -81,9 +82,8 @@ public class RecoverPasswordActivity extends AppCompatActivity implements View.O
                 String[] toArr = {email};
                 m.setTo(toArr);
 
-                m.setFrom("mPautas@recoverpassword.com.br");
-                m.setSubject(email);
-                m.setBody("Sua senha é: " + db.userDao().getUserPassword(email));
+                m.setSubject("Recuperação de senha");
+                m.setBody("Olá " + db.userDao().getUser(email).getUserName() + ". Sua senha é: " + password);
 
                 try {
                     m.sendE();

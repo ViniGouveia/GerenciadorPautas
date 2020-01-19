@@ -43,18 +43,18 @@ public class Mail extends javax.mail.Authenticator {
     private Multipart _multipart;
 
     public Mail() {
-        _host = "smtp.sendgrid.net";
-        _port = "587";
-        _sport = "587";
+        _host = "smtp.gmail.com";
+        _port = "465";
+        _sport = "465";
 
-        _from = _user = "apikey"; // usuário e email do remetente
-        _password = "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"; // senha
+        _user = _from = "mpautasapp@gmail.com"; // usuário e email do remetente
+        _password = "mpautas123"; // senha
         _subject = ""; // assunto
         _body = ""; // mensagem
 
         _debuggable = false;
         _auth = true;
-        _useSsl = false;//gmail usa true
+        _useSsl = true;//gmail usa true
         _isHtmlBody = true;//diz se a mensagem é HTML ou texto puro
 
         _multipart = new MimeMultipart();
