@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         intentToRecoverPassword = new Intent(getApplicationContext(), RecoverPasswordActivity.class);
         intentToCreateAccount = new Intent(getApplicationContext(), CreateAccountActivity.class);
         intentToAgenda = new Intent(getApplicationContext(), OpenedAgendasActivity.class);
+        intentToAgenda.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         //Mapeamento dos elementos gráficos
         this.mLoginViewHolder.textEmail = findViewById(R.id.text_email);
@@ -57,6 +58,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         this.mLoginViewHolder.buttonRecoverPassword.setOnClickListener(this);
 
         if (!savedEmail.isEmpty() && !savedPassword.isEmpty()) {
+            finish();
             startActivity(intentToAgenda);
         }
     }
@@ -90,6 +92,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             mSharedPreferences.storeString(Constants.USEREMAIL_KEY, user.getUserEmail());
             mSharedPreferences.storeString(Constants.USERNAME_KEY, user.getUserName());
             mSharedPreferences.storeString(Constants.USERPASSWORD_KEY, user.getUserPassword());
+            finish();
             startActivity(intentToAgenda);
         } else {
             Toast.makeText(getApplicationContext(), "Senha incorreta", Toast.LENGTH_LONG).show();

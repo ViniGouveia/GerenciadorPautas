@@ -34,6 +34,7 @@ public class ProfileAcessActivity extends AppCompatActivity implements View.OnCl
 
         intentBackProfileAcess = new Intent(getApplicationContext(), AgendaActivity.class);
         intentBackToLogin = new Intent(getApplicationContext(), LoginActivity.class);
+        intentBackToLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         loadDataFromLoggedUser();
 

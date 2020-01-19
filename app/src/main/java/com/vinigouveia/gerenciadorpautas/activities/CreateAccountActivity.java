@@ -42,6 +42,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         final Intent intentBackCreateAccount = new Intent(getApplicationContext(), LoginActivity.class);
+        intentBackCreateAccount.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         if (v.getId() == R.id.button_back_create_account) {
             startActivity(intentBackCreateAccount); // Volta à tela de login
         }

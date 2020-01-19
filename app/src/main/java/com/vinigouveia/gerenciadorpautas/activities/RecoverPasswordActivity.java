@@ -37,6 +37,7 @@ public class RecoverPasswordActivity extends AppCompatActivity implements View.O
 
         db = MyDatabase.getAppDatabase(getApplicationContext());
         intentBackRecoverPassword = new Intent(getApplicationContext(), LoginActivity.class);
+        intentBackRecoverPassword.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         email = getIntent().getStringExtra(Constants.USEREMAIL_KEY);
 
