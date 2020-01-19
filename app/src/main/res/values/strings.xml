@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GerenciadorPautas</string>
+    <string name="app_name">mPautas</string>
     <string name="profile">Perfil</string>
     <string name="email">E-mail</string>
     <string name="name">Nome</string>

@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         intentToRecoverPassword = new Intent(getApplicationContext(), RecoverPasswordActivity.class);
         intentToCreateAccount = new Intent(getApplicationContext(), CreateAccountActivity.class);
-        intentToAgenda = new Intent(getApplicationContext(), AgendaActivity.class);
+        intentToAgenda = new Intent(getApplicationContext(), OpenedAgendasActivity.class);
 
         //Mapeamento dos elementos gráficos
         this.mLoginViewHolder.textEmail = findViewById(R.id.text_email);

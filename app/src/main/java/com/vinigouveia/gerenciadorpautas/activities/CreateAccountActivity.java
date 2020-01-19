@@ -50,13 +50,17 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             String newEmail = mCreateAccountViewHolder.textNewEmail.getText().toString();
             String newName = mCreateAccountViewHolder.textNewName.getText().toString();
             String newPassword = mCreateAccountViewHolder.textNewPassword.getText().toString();
-            if (db.userDao().getUser(newEmail) == null) {
-                UserEntity user = new UserEntity(newEmail, newName, newPassword);
-                db.userDao().insertUser(user);
-                startActivity(intentBackCreateAccount);
-                Toast.makeText(getApplicationContext(), "Conta criada com sucesso!", Toast.LENGTH_LONG).show();
+            if (newEmail.equals("") || newName.equals("") || newPassword.equals("")) {
+                Toast.makeText(getApplicationContext(), "Preencha todos os campos", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(getApplicationContext(), "Email existente, tente novamente.", Toast.LENGTH_LONG).show();
+                if (db.userDao().getUser(newEmail) == null) {
+                    UserEntity user = new UserEntity(newEmail, newName, newPassword);
+                    db.userDao().insertUser(user);
+                    startActivity(intentBackCreateAccount);
+                    Toast.makeText(getApplicationContext(), "Conta criada com sucesso!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Email existente, tente novamente.", Toast.LENGTH_LONG).show();
+                }
             }
         }
     }

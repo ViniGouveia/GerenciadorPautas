@@ -11,6 +11,9 @@ import java.util.List;
 
 @Dao
 public interface AgendaDao {
+    @Query("SELECT * FROM agendas")
+    List<AgendaEntity> getDBAllAgendas();
+
     @Query("SELECT * FROM agendas WHERE authorEmail LIKE :userEmail ")
     List<AgendaEntity> getAllAgendas(String userEmail);
 

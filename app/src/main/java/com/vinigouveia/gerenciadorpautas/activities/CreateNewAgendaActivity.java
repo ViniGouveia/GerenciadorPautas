@@ -18,6 +18,8 @@ import com.vinigouveia.gerenciadorpautas.Room.DBEntities.AgendaEntity;
 import com.vinigouveia.gerenciadorpautas.SharedPreferences.SecurityPreferences;
 import com.vinigouveia.gerenciadorpautas.Constants.Constants;
 
+import java.util.List;
+
 public class CreateNewAgendaActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
 
     //Instancia do objeto utilizado para mapear os elementos gráficos da Activity
@@ -26,8 +28,6 @@ public class CreateNewAgendaActivity extends AppCompatActivity implements View.O
     private Intent mIntentBackCreateNewAgenda;
 
     private MyDatabase db;
-
-    private AgendaEntity newAgenda;
 
     private String authorEmail;
     private String authorName;
@@ -43,7 +43,8 @@ public class CreateNewAgendaActivity extends AppCompatActivity implements View.O
         authorEmail = mSharedPreferences.getStoredString(Constants.USEREMAIL_KEY);
         authorName = mSharedPreferences.getStoredString(Constants.USERNAME_KEY);
 
-        mIntentBackCreateNewAgenda = new Intent(getApplicationContext(), AgendaActivity.class);
+
+        mIntentBackCreateNewAgenda = new Intent(getApplicationContext(), OpenedAgendasActivity.class);
 
         //Mapeamento dos elementos gráficos
         this.mCreateNewAgendaViewHolder.textNewTitle = findViewById(R.id.text_new_title);
@@ -71,7 +72,7 @@ public class CreateNewAgendaActivity extends AppCompatActivity implements View.O
         }
 
         if (v.getId() == R.id.button_create_new_agenda) {
-            newAgenda = getNewAgendaData();
+            AgendaEntity newAgenda = getNewAgendaData();
             db.agendaDao().insertAgenda(newAgenda);
             startActivity(mIntentBackCreateNewAgenda);
             Toast.makeText(getApplicationContext(), "Pauta adicionada com sucesso!", Toast.LENGTH_LONG).show();
@@ -83,7 +84,7 @@ public class CreateNewAgendaActivity extends AppCompatActivity implements View.O
         title = mCreateNewAgendaViewHolder.textNewTitle.getText().toString();
         shortDescription = mCreateNewAgendaViewHolder.textNewShortDescription.getText().toString();
         description = mCreateNewAgendaViewHolder.textNewDescription.getText().toString();
-        return new AgendaEntity(db.agendaDao().getAllAgendas(authorEmail).size(), title, shortDescription, description, authorName, authorEmail);
+        return new AgendaEntity(db.agendaDao().getDBAllAgendas().size(), title, shortDescription, description, authorName, authorEmail);
     }
 
     public Boolean verifyEmptyFields() {
