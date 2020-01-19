@@ -11,15 +11,21 @@
         android:id="@+id/text_help_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
-        android:text="Aqui vai o texto de ajuda ao usuário" />
+        android:text="@string/help_user"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/button_back_help_user"
         android:layout_width="wrap_content"
-        android:background="@drawable/button_grey_background"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/button_grey_background"
         android:text="@string/back" />
 
 </LinearLayout>

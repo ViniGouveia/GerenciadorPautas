@@ -21,4 +21,27 @@
     <string name="closed_agendas">Pautas fechadas</string>
     <string name="author_name">Autor</string>
     <string name="finish">Finalizar</string>
+    <string name="help_user">
+        AJUDA\n\n
+
+        O mPautas é um aplicativo de gerenciamento de pautas, no qual o usuário pode efetuar um login(1) através das suas credenciais de usuário, que pode ser criadas no
+na opção Cadastre-se(2), caso o usuário esqueça sua senha é possível recuperá-la acessando a opção Esqueci minha senha(3). Após fazer o login, o usuário poderá gerenciar suas pautas abertas(4) e fechadas(5). Clicando no botão flutuante no canto inferior direito, o usuário poderá criar uma nova pauta(6), que será adicionada à lista de pautas abertas. Clicando no Menu(7), o usuário poderá acessar o seu Perfil(8), no qual poderá efetuar o logout da aplicação(9).\n\n
+
+1- Ao preencher o campo de Email e Senha, o sistema fará uma validação, se o usuário existir, o login é efetuado e o usuário direcionado à sua lista de Pautas abertas.\n\n
+
+2- Ao preencher os campos de Nome, Email e Senha, o sistema fará uma validação, se o usuário já existir, uma notificação é disparada, caso contrário, o sistema cria a conta do usuário.\n\n
+
+3- Ao informar o email cadastrado, será enviado ao mesmo a senha associada ao cadastro, caso o email não seja encontrado, uma notificação é disparada.\n\n
+
+4, 5 - Uma lista contendo as pautas (abertas ou fechadas) é exibida, contendo o Titulo e uma breve descrição da mesma, ao tocar em uma pauta, a mesma é expandida, revelando sua Descrição completa e nome do autor. Ao clicar no botão (finalizar/reabrir), se a pauta estiver aberta, ela é encaminhada a lista de pautas fechadas e vice-versa.\n\n
+
+6- Ao preencher todos os campos (Titulo, breve descrição, descrição), o botão Finalizar ficará disponível e a pauta será adicionada à lista de pautas abertas e o usuário encaminhada para a mesma.\n\n
+
+7- Ao clicar no menu, o usuário terá a opção de acessar o seu perfil ou este descritivo de ajuda.\n\n
+
+8- Ao entrar no perfil, será exibido ao usuário seu Nome e Email de cadastro.\n\n
+
+9- Ao fazer o logout, o usuário é encaminhado para a tela de login novamente.
+
+</string>
 </resources>
