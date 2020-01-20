@@ -53,16 +53,22 @@
         android:textColor="@color/colorBlack"
         android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/text_new_description"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/fields_background"
-        android:hint="@string/details"
-        android:inputType="textMultiLine"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        android:text="" />
+        android:layout_height="100dp">
+
+        <EditText
+            android:id="@+id/text_new_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fields_background"
+            android:hint="@string/details"
+            android:inputType="textMultiLine"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:scrollbars="vertical"
+            android:text="" />
+    </ScrollView>
 
     <TextView
         android:layout_width="wrap_content"
