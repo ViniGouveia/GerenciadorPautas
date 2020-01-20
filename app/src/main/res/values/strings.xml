@@ -12,7 +12,7 @@
     <string name="details">Detalhes</string>
     <string name="author">Autor</string>
     <string name="login">Login</string>
-    <string name="forgot_my_password">Esqueci minha senha</string>
+    <string name="forgot_my_password">Esqueci a senha</string>
     <string name="create_new_account">Cadastre-se</string>
     <string name="logout">Logout</string>
     <string name="send_password">Enviar Senha</string>

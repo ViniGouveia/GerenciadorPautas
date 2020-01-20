@@ -66,7 +66,6 @@ public class OpenedAgendasActivity extends AppCompatActivity implements View.OnC
             Intent intentBackOpenedAgendas = new Intent(getApplicationContext(), AgendaActivity.class);
             startActivity(intentBackOpenedAgendas);
         }
-
     }
 
     public void reopenOrCloseAgenda(View view) {
