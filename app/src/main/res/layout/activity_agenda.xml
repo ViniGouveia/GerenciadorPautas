@@ -19,7 +19,7 @@
             android:background="@color/colorHeader"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:subtitle="Perfil | Ajuda"
-            app:subtitleTextColor="@color/colorBlack"
+            app:subtitleTextColor="@color/colorTextWhite"
             app:title="Menu"
             app:titleTextColor="@color/colorBlack" />
 
