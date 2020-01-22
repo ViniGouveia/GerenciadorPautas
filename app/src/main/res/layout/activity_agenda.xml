@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorHeader"
+            android:background="@color/colorButtonGrey"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:subtitle="Perfil | Ajuda"
             app:subtitleTextColor="@color/colorTextWhite"
