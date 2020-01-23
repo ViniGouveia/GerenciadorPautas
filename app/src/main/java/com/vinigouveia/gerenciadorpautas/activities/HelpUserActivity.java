@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.vinigouveia.gerenciadorpautas.R;
 
+
 public class HelpUserActivity extends AppCompatActivity implements View.OnClickListener {
 
     //Instancia do objeto utilizado para mapear os elementos gráficos da Activity

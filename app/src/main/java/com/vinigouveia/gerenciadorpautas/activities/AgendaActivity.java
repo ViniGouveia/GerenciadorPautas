@@ -18,6 +18,8 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
 
     //Instancia do objeto utilizado para mapear os elementos gráficos da activity
     private AgendaViewHolder mAgendaViewHolder = new AgendaViewHolder();
+
+    //Intents utilizadas na activity
     private Intent intentToProfile;
     private Intent intentToHelp;
     private Intent intentToCreateNewAgenda;
@@ -31,6 +33,7 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Instancia das intents utilizadas
         intentToProfile = new Intent(getApplicationContext(), ProfileAcessActivity.class);
         intentToHelp = new Intent(getApplicationContext(), HelpUserActivity.class);
         intentToCreateNewAgenda = new Intent(getApplicationContext(), CreateNewAgendaActivity.class);

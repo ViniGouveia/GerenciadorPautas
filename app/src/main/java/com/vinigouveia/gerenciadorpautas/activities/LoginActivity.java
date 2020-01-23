@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         this.mLoginViewHolder.buttonCreateAccount.setOnClickListener(this);
         this.mLoginViewHolder.buttonRecoverPassword.setOnClickListener(this);
 
+        //Verifica se já possui dados de login salvos, caso tenha o usuário já é encaminhado para a tela de Pautas abertas
         if (!savedEmail.isEmpty() && !savedPassword.isEmpty()) {
             finish();
             startActivity(intentToAgenda);
@@ -85,6 +86,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    //Procedimento que verifica as credenciais do usuário no banco de dados e caso o usuário seja encontrado o login é efetuado
     public void verifyUser(UserEntity user, String password) {
         if (user == null) {
             Toast.makeText(getApplicationContext(), "Usuário não encontrado", Toast.LENGTH_LONG).show();

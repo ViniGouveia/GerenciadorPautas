@@ -3,6 +3,7 @@ package com.vinigouveia.gerenciadorpautas.SharedPreferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+//Shared preferences utilizado para salvar os dados do usuário ao fazer login
 public class SecurityPreferences {
 
     private SharedPreferences mSharedPreferences;

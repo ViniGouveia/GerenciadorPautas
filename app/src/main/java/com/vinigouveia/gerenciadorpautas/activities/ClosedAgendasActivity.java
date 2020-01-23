@@ -69,12 +69,15 @@ public class ClosedAgendasActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+
+    //Procedimento que preenche a lista expansiva com as pautas do usuário logado, temos o mesmo procedimento em OpenedAgendasActivity
     private void addAgendas(List<AgendaEntity> agendas) {
         for (int i = 0; i < agendas.size(); i++) {
             listGroup.add(agendas.get(i));
         }
     }
 
+    //Evento de clique ao pressionar o botão Finalizar/Reabrir a pauta, temos o mesmo procedimento em OpenedAgendasActivity
     public void reopenOrCloseAgenda(View view) {
         int group = (int) view.getTag();
         if (listGroup.get(group).getStatus()) {

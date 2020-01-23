@@ -69,6 +69,7 @@ public class RecoverPasswordActivity extends AppCompatActivity implements View.O
         }
     }
 
+    //Envia o email contendo a senha do usuário cadastrado
     private void sendEmail() {
         if (!isOnline()) {
             Toast.makeText(getApplicationContext(), "Verifique sua conexão com a internet!", Toast.LENGTH_SHORT).show();
@@ -95,6 +96,7 @@ public class RecoverPasswordActivity extends AppCompatActivity implements View.O
         }).start();
     }
 
+    //Procedimento que recupera a senha do usuário com o email informado
     private Boolean recoverPassword() {
         UserEntity user;
         if (email.equals("")) {
@@ -126,6 +128,7 @@ public class RecoverPasswordActivity extends AppCompatActivity implements View.O
         }
     }
 
+    //Procedimento que verifica se o telefone está conectado à internet
     public boolean isOnline() {
         try {
             ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

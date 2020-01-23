@@ -47,7 +47,6 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             startActivity(intentBackCreateAccount); // Volta à tela de login
         }
         if (v.getId() == R.id.button_create_new_account) {
-
             String newEmail = mCreateAccountViewHolder.textNewEmail.getText().toString();
             String newName = mCreateAccountViewHolder.textNewName.getText().toString();
             String newPassword = mCreateAccountViewHolder.textNewPassword.getText().toString();

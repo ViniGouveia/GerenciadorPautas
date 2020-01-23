@@ -18,7 +18,6 @@ import com.vinigouveia.gerenciadorpautas.Room.DBEntities.AgendaEntity;
 import com.vinigouveia.gerenciadorpautas.SharedPreferences.SecurityPreferences;
 import com.vinigouveia.gerenciadorpautas.Constants.Constants;
 
-import java.util.List;
 
 public class CreateNewAgendaActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
 
@@ -79,6 +78,7 @@ public class CreateNewAgendaActivity extends AppCompatActivity implements View.O
         }
     }
 
+    //Função que coleta os dados informados nos campos e retorna uma Pauta pra ser adicionada
     public AgendaEntity getNewAgendaData() {
         String title, shortDescription, description;
         title = mCreateNewAgendaViewHolder.textNewTitle.getText().toString();
@@ -87,15 +87,18 @@ public class CreateNewAgendaActivity extends AppCompatActivity implements View.O
         return new AgendaEntity(db.agendaDao().getDBAllAgendas().size(), title, shortDescription, description, authorName, authorEmail);
     }
 
+    //Função que verifica se os campos estão vazios
     public Boolean verifyEmptyFields() {
         return this.mCreateNewAgendaViewHolder.textNewTitle.getText().toString().equals("") || this.mCreateNewAgendaViewHolder.textNewShortDescription.getText().toString().equals("") || this.mCreateNewAgendaViewHolder.textNewDescription.getText().toString().equals("");
     }
 
+    //Procedimento para desbloquear o botão
     public void unlockButton() {
         this.mCreateNewAgendaViewHolder.buttonCreateNewAgenda.setBackground(getResources().getDrawable(R.drawable.button_green_background));
         this.mCreateNewAgendaViewHolder.buttonCreateNewAgenda.setEnabled(true);
     }
 
+    //Procedimento para bloquear o botão
     public void lockButton() {
         this.mCreateNewAgendaViewHolder.buttonCreateNewAgenda.setBackground(getResources().getDrawable(R.drawable.button_grey_background));
         this.mCreateNewAgendaViewHolder.buttonCreateNewAgenda.setEnabled(false);

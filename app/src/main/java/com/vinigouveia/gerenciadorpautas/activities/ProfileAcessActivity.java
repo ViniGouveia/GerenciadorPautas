@@ -60,11 +60,12 @@ public class ProfileAcessActivity extends AppCompatActivity implements View.OnCl
 
         if (v.getId() == R.id.button_logout) {
             finish();
-            mSharedPreferences.clearSharedPreferences();
+            mSharedPreferences.clearSharedPreferences(); //Limpa as credenciais salvas para um novo login ser efetuado
             startActivity(intentBackToLogin);
         }
     }
 
+    //Procedimento que recupera os dados do usuário logado para ser exibido no perfil
     private void loadDataFromLoggedUser() {
         userEmail = mSharedPreferences.getStoredString(Constants.USEREMAIL_KEY);
         userName = mSharedPreferences.getStoredString(Constants.USERNAME_KEY);
